@@ -11,6 +11,9 @@ import ProfileUpdate from './pages/ProfileUpdate';
 import ExamList from './pages/ExamList';
 import AdminBatchManager from './pages/AdminBatchManager';
 import AdminCourseManager from './pages/AdminCourseManager';
+import ExamCreate from './pages/ExamCreate';
+import TeacherExamList from './pages/TeacherExamList';
+import ExamResultEntry from './pages/ExamResultEntry';
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +32,14 @@ function App() {
           }
         />
         <Route
+  path="/teacher/exams/results"
+  element={
+    <ProtectedRoute allowedRoles={['TEACHER']}>
+      <ExamResultEntry />
+    </ProtectedRoute>
+  }
+/>
+        <Route
           path="/dashboard/teacher"
           element={
             <ProtectedRoute allowedRoles={['TEACHER']}>
@@ -44,7 +55,15 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+      
+       <Route
+  path="/teacher/exams"
+  element={
+    <ProtectedRoute allowedRoles={['TEACHER']}>
+      <TeacherExamList />
+    </ProtectedRoute>
+  }
+/>
 
         <Route
   path="/resume"
@@ -70,22 +89,32 @@ function App() {
     </ProtectedRoute>
   }
 />
-<Route
-  path="/admin/courses"
-  element={
-    <ProtectedRoute allowedRoles={['ADMIN']}>
-      <AdminCourseManager />
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/admin/batches"
-  element={
-    <ProtectedRoute allowedRoles={['ADMIN']}>
-      <AdminBatchManager />
-    </ProtectedRoute>
-  }
-/>
+        <Route
+          path="/admin/courses"
+          element={
+            <ProtectedRoute allowedRoles={['ADMIN']}>
+              <AdminCourseManager />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/teacher/exams/create"
+          element={
+            <ProtectedRoute allowedRoles={['TEACHER']}>
+              <ExamCreate />
+            </ProtectedRoute>
+          }
+        />
+
+      <Route
+        path="/admin/batches"
+        element={
+          <ProtectedRoute allowedRoles={['ADMIN']}>
+            <AdminBatchManager />
+          </ProtectedRoute>
+        }
+      />
       </Routes>
     </BrowserRouter>
   );
