@@ -10,6 +10,7 @@ import ResumeUpload from './pages/ResumeUpload';
 import ProfileUpdate from './pages/ProfileUpdate';
 import ExamList from './pages/ExamList';
 import AdminBatchManager from './pages/AdminBatchManager';
+import AdminCourseManager from './pages/AdminCourseManager';
 function App() {
   return (
     <BrowserRouter>
@@ -66,6 +67,14 @@ function App() {
   element={
     <ProtectedRoute allowedRoles={['STUDENT']}>
       <ProfileUpdate />
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/admin/courses"
+  element={
+    <ProtectedRoute allowedRoles={['ADMIN']}>
+      <AdminCourseManager />
     </ProtectedRoute>
   }
 />
